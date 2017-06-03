@@ -1,6 +1,6 @@
 {
-  "author": "ariatemplates <contact@ariatemplates.com> (http://github.com/ariatemplates)",
-  "name": "git-release-notes",
+  "author": "neutmute <neutmute@noreply.users.github.com> (http://github.com/neutmute)",
+  "name": "kraken-release-notes",
   "description": "Generate beautiful release notes from a git log.",
   "keywords": [
     "git",
@@ -35,9 +35,9 @@
   "bin": "./index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ariatemplates/git-release-notes"
+    "url": "https://github.com/neutmute/kraken-release-notes"
   },
-  "homepage": "https://github.com/ariatemplates/git-release-notes",
+  "homepage": "https://github.com/neutmute/kraken-release-notes",
   "preferGlobal": true,
   "devDependencies": {
     "cross-env": "^4.0.0",

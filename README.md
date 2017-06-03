@@ -4,16 +4,16 @@ Generate release note pages from git commit history.
 
 ### Installation
 
-It's preferable to install it globally through [`npm`](https://www.npmjs.com/package/git-release-notes)
+It's preferable to install it globally through [`npm`](https://www.npmjs.com/package/kraken-release-notes)
 
-    npm install -g git-release-notes
+    npm install -g kraken-release-notes
 
 ### Usage
 
 The basic usage is
 
     cd <your_git_project>
-    git-release-notes <since>..<until> <template>
+    kraken-release-notes <since>..<until> <template>
 
 Where
 
@@ -22,19 +22,19 @@ Where
 
 Three sample templates are included as a reference in the `templates` folder
 
- * `markdown` [(sample)](https://github.com/ariatemplates/git-release-notes/blob/master/samples/output-markdown.md)
- * `html` [(sample)](http://htmlpreview.github.io/?https://github.com/ariatemplates/git-release-notes/blob/master/samples/output-html.html)
- * `html-bootstrap` [(sample)](http://htmlpreview.github.io/?https://github.com/ariatemplates/git-release-notes/blob/master/samples/output-html-bootstrap.html)
+ * `markdown` [(sample)](https://github.com/neutmute/kraken-release-notes/blob/master/samples/output-markdown.md)
+ * `html` [(sample)](http://htmlpreview.github.io/?https://github.com/neutmute/kraken-release-notes/blob/master/samples/output-html.html)
+ * `html-bootstrap` [(sample)](http://htmlpreview.github.io/?https://github.com/neutmute/kraken-release-notes/blob/master/samples/output-html-bootstrap.html)
 
 This for example is the release notes generated for `joyent/node` by running
 
-    git-release-notes v0.9.8..v0.9.9 html > changelog.html
+    kraken-release-notes v0.9.8..v0.9.9 html > changelog.html
 
-[<img src="https://github.com/ariatemplates/git-release-notes/raw/master/samples/node_thumb.png" alt="Node's release notes">](https://github.com/ariatemplates/git-release-notes/raw/master/samples/node.png)
+[<img src="https://github.com/neutmute/kraken-release-notes/raw/master/samples/node_thumb.png" alt="Node's release notes">](https://github.com/neutmute/kraken-release-notes/raw/master/samples/node.png)
 
 #### Custom template
 
-The second parameter of `git-release-notes` can be any path to a valid ejs template files.
+The second parameter of `kraken-release-notes` can be any path to a valid ejs template files.
 
 ##### Template Variables
 
@@ -52,9 +52,9 @@ Several template variables are made available to the script running inside the t
 * `title` subject (%s)
 * `messageLines` array of body lines (%b)
 
-`dateFnsFormat` is the date-fns [format](https://date-fns.org/docs/format) function. See the [html-bootstrap](https://github.com/ariatemplates/git-release-notes/blob/master/templates/html-bootstrap.ejs) for usage example.
+`dateFnsFormat` is the date-fns [format](https://date-fns.org/docs/format) function. See the [html-bootstrap](https://github.com/neutmute/kraken-release-notes/blob/master/templates/html-bootstrap.ejs) for usage example.
 
-`options` the object documented below. Useful for parsing the repository name. See the [html-bootstrap](https://github.com/ariatemplates/git-release-notes/blob/master/templates/html-bootstrap.ejs) for sample usage.
+`options` the object documented below. Useful for parsing the repository name. See the [html-bootstrap](https://github.com/neutmute/kraken-release-notes/blob/master/templates/html-bootstrap.ejs) for sample usage.
 
 `request` is an instance of [sync-request](https://www.npmjs.com/package/sync-request). This can be useful for querying the Jira API for example to extract extra metadata about a ticket related to a commit.
 
@@ -68,7 +68,7 @@ More advanced command line options are
 * `b` or `branch` Git branch, defaults to `master`
 * `t` or `title` Regular expression to parse the commit title (see next chapter)
 * `m` or `meaning` Meaning of capturing block in title's regular expression
-* `f` or `file` JSON configuration file. This is a better option when you don't want to pass all parameters to the command line, for an example see [options.json](https://github.com/ariatemplates/git-release-notes/blob/master/options.json)
+* `f` or `file` JSON configuration file. This is a better option when you don't want to pass all parameters to the command line, for an example see [options.json](https://github.com/neutmute/kraken-release-notes/blob/master/options.json)
 * `d` or `templateData` JSON data file that is passed straight through to the template. Path should be relative to current working directory.
 
 #### Title Parsing
@@ -77,7 +77,7 @@ Some projects might have special naming conventions for the commit title.
 
 The options `t` and `m` allow to specify this logic and extract additional information from the title.
 
-For instance, [Aria Templates](https://github.com/ariatemplates/ariatemplates) has the following convention
+For instance, [Aria Templates](https://github.com/neutmute/neutmute) has the following convention
 
     fix #123 Title of a bug fix commit
     feat #234 Title of a cool new feature
@@ -85,7 +85,7 @@ For instance, [Aria Templates](https://github.com/ariatemplates/ariatemplates) h
 In this case using
 
 ```
-git-release-notes -t "^([a-z]+) #(\d+) (.*)$" -m type -m issue -m title v1.3.6..HEAD html
+kraken-release-notes -t "^([a-z]+) #(\d+) (.*)$" -m type -m issue -m title v1.3.6..HEAD html
 ```
 
 generates the additional fields on the commit object
@@ -98,7 +98,7 @@ generates the additional fields on the commit object
 Another project using similar conventions is [AngularJs](https://github.com/angular/angular.js), [commit message conventions](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#).
 
 ```
-git-release-notes -t "^(\w*)(?:\(([\w\$\.]*)\))?\: (.*)$" -m type -m scope -m title v1.1.2..v1.1.3 markdown
+kraken-release-notes -t "^(\w*)(?:\(([\w\$\.]*)\))?\: (.*)$" -m type -m scope -m title v1.1.2..v1.1.3 markdown
 ```
 
 ### Development
@@ -112,9 +112,9 @@ To execute from this source against another repository, use a command like
 If the output is not what you expect, set the `DEBUG` environment variable:
 
 #### Linux
-    DEBUG=release-notes:* git-release-notes ...
+    DEBUG=release-notes:* kraken-release-notes ...
 
 #### Windows
 
     SET DEBUG=release-notes:*
-    git-release-notes ...
+    kraken-release-notes ...
