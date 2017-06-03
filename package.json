@@ -16,7 +16,7 @@
     "test-html-bootstrap": "cross-env DEBUG=*cli node index.js -- 32a369f..0419636 ./templates/html-bootstrap.ejs > ./samples/output-html-bootstrap.html",
     "test-markdown": "node index.js -- 32a369f..0419636 ./templates/markdown.ejs > ./samples/output-markdown.md"
   },
-  "version": "1.0.0",
+  "version": "1.0.1s",
   "dependencies": {
     "cross-env": "4.0.0",
     "date-fns": "^1.28.4",
